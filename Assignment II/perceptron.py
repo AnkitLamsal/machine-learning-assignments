@@ -170,3 +170,7 @@ def get_user_input()->ArrayLike:
     x2 = [int(i) for i in x2]
     data = np.array([x1,x2])
     return data
+
+test_data = get_user_input()
+predicted_data = perceptron.predict(test_data)
+print("Predicted Ouput for given input is {}".format(predicted_data))
