@@ -61,3 +61,22 @@ class Perceptron:
         weight = np.random.randn(output_size,feature_size)
         bias = np.zeros((output_size,1))
         return (weight, bias)
+
+    def forward_pass(self,x:ArrayLike)->ArrayLike:
+        """This function takes the forward propagation stage of neural network.
+        First Weighted Sum is calculated and Activation function is calculated 
+        user given activation function. 
+        Args:
+            x (ArrayLike): =Numpy Array which are either 0 or 1 in form. Input data with multiple features.
+
+        Returns:
+            ArrayLike: Numpy array of predicted output. All elements are either 0 or 1.
+        """        
+        dot_product = np.dot(self.weights,x) + self.bias
+        if(self.activation == "sigmoid"):
+            predicted_y = sigmoid(dot_product)
+        elif(self.activation == "relu"):
+            predicted_y = relu(dot_product)
+        elif(self.activation == "tanh"):
+            predicted_y = np.tanh(dot_product)
+        return predicted_y
