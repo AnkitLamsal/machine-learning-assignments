@@ -115,3 +115,14 @@ class Perceptron:
         print("Weights => {}".format(self.weights))
         print("Bias => {}".format(self.bias))
         print("================================================================")
+        
+    def print_params(self,i:int):
+        """This function prints the parameters {Weights and bias} in each itreations of the loop.
+
+        Args:
+            i (int): Itreation Number.
+        """        
+        print("At itreation {}:".format(i+1))
+        print("Weights => {}".format(self.weights))
+        print("Bias => {}".format(self.bias))
+        print("================================================================")
