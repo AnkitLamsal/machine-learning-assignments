@@ -80,3 +80,18 @@ class Perceptron:
         elif(self.activation == "tanh"):
             predicted_y = np.tanh(dot_product)
         return predicted_y
+    
+    def calculate_delta(self,x:ArrayLike,y:ArrayLike,predicted_y:ArrayLike):
+        """This Function Calculates difference of the weight.Inorder to adjust the parameters.
+        It also assigns into the Object's element.
+        Args:
+            x (ArrayLike): Input Set
+            y (ArrayLike): Labels / Outputs
+            predicted_y (ArrayLike): Predicted Output from forward pass.
+        """        
+        m = x.shape[1]
+        difference = y -predicted_y
+        gradient_bias = np.sum(difference, axis=1,keepdims=True)
+        gradient_weights = np.dot(difference,x.T)/m
+        self.delta_weights = gradient_weights
+        self.delta_bias = gradient_bias
