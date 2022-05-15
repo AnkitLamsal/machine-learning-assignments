@@ -148,3 +148,11 @@ class Perceptron:
         raw_predicted = self.forward_pass(x)
         prediction = (raw_predicted > 0.5)*1
         return prediction
+    
+features = np.array([[0,0,1,1],[0,1,0,1]])
+label = np.array([[0,0,0,1]])
+input_size = features.shape[0]
+label_size = label.shape[0]
+perceptron = Perceptron(input_size,label_size ,0.1, 200, 'tanh')
+perceptron.fit(features, label)
+
