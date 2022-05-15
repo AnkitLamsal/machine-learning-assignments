@@ -153,6 +153,20 @@ features = np.array([[0,0,1,1],[0,1,0,1]])
 label = np.array([[0,0,0,1]])
 input_size = features.shape[0]
 label_size = label.shape[0]
-perceptron = Perceptron(input_size,label_size ,0.1, 200, 'tanh')
+perceptron = Perceptron(input_size,label_size ,0.1, 200, 'relu')
 perceptron.fit(features, label)
 
+def get_user_input()->ArrayLike:
+    """This function gets input from user.
+
+    Returns:
+        ArrayLike: Returns numpy array given by user.
+    """    
+    input_data_x1 = input("Enter X1 values(each with comma seperation):")
+    input_data_x2 = input("Enter X2 values(each with comma seperation):")
+    x1 = input_data_x1.split(",")
+    x2 = input_data_x2.split(",")
+    x1 = [int(i) for i in x1 ]
+    x2 = [int(i) for i in x2]
+    data = np.array([x1,x2])
+    return data
