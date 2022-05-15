@@ -116,13 +116,35 @@ class Perceptron:
         print("Bias => {}".format(self.bias))
         print("================================================================")
         
-    def print_params(self,i:int):
-        """This function prints the parameters {Weights and bias} in each itreations of the loop.
+    def fit(self,x:ArrayLike,y:ArrayLike):
+        """This function is training functions. It fits the parameters based on input and ouput.
+        It sequentially executes following functions:
+        1. Forward Pass --> Forward propagation of perceptron.
+        2. Calculate Delta --> Calculates the gradient of the weight and bias.
+        3. Update Params --> Updates the weights and bias parameters.
 
         Args:
-            i (int): Itreation Number.
+            x (ArrayLike): Input/Features/X
+            y (ArrayLike): Output/Label/Y
         """        
-        print("At itreation {}:".format(i+1))
-        print("Weights => {}".format(self.weights))
-        print("Bias => {}".format(self.bias))
-        print("================================================================")
+        for i in range(self.itreation):
+            predicted_value = self.forward_pass(x)
+            self.calculate_delta(x,y,predicted_value)
+            self.update_params()
+            self.print_params(i)
+            
+    def predict(self,x:ArrayLike)->ArrayLike:
+        """This function executes forward pass as well, it polishes the output array based on
+        probability.
+        If predicted value is less than 0.5, returns array element as 0.
+        Else returns 1.
+
+        Args:
+            x (ArrayLike): Numpy Array which are either 0 or 1 in form. Input data with multiple features.
+
+        Returns:
+            ArrayLike: Polished Predicted Value. Directly used for predicting value.
+        """        
+        raw_predicted = self.forward_pass(x)
+        prediction = (raw_predicted > 0.5)*1
+        return prediction
