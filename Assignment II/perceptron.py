@@ -95,3 +95,12 @@ class Perceptron:
         gradient_weights = np.dot(difference,x.T)/m
         self.delta_weights = gradient_weights
         self.delta_bias = gradient_bias
+        
+    def update_params(self):
+        """This function updates the weight and bias parameters.
+        Calculates adjusted weight and adjusted bias as : 
+                    Weight(new) = Weight(old) + learning_rate*(gradient_weight)
+                    Bias(new) = Bias(old) + learning_rate*(gradient_bias)
+        """        
+        self.weights = self.weights + self.learning_rate*self.delta_weights
+        self.bias = self.bias+self.learning_rate*self.delta_bias
