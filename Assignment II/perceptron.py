@@ -46,3 +46,18 @@ class Perceptron:
         self.itreation = itreation
         self.weights, self.bias = self.initialize_params(self.features, self.output)
         self.activation = activation
+        
+    def initialize_params(self,feature_size:int, output_size:int)->Tuple:
+        """This function initailizes weight and bias parameter for training based on
+        X(input/feature size) and Y(output_size/ label size)
+
+        Args:
+            feature_size (int): Size of X
+            output_size (int): Size of labels.
+
+        Returns:
+            Tuple:  Initialized weights and biases.
+        """                        
+        weight = np.random.randn(output_size,feature_size)
+        bias = np.zeros((output_size,1))
+        return (weight, bias)
